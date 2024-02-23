@@ -1,0 +1,182 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="app">
+    <section class="hero">
+      <div class="hero_wrapper">
+        <div class="hero_gallery"></div>
+
+        <div class="hero_title">
+          <div class="ofh"><h1>S</h1></div>
+          <div class="ofh"><h1>K</h1></div>
+          <div class="ofh"><h1>Y</h1></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+</Layout>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script is:inline>
+	const hero = document.querySelector(".hero"),
+	  heroTitle = document.querySelector(".hero_title > .ofh > h1");
+  
+	  const settings = {
+		  isEnabled: false,
+		  count: 1,
+		  time: 50,
+	  }
+  
+	  const images = [
+		  '/1.png',
+		  '/2.png',
+		  '/3.png',
+		  '/4.png',
+		  '/5.png',
+		  '/6.png',
+	  ]
+  
+	  const initHero = () => {
+		  gsap.set(heroTitle, { x: '-101%'})
+		  showHero();
+	  }
+  
+	  const showHero = () => {
+		  gsap.to(heroTitle, {
+			  duration: 1.75,
+			  x: 0,
+			  ease: 'expo.inOut',
+			  stagger: 0.025
+		  })
+	  }
+  
+	  const preloadImages = () => {
+		  for (let i = 0; i < images.length; i++) {
+			  let link = document.createElement('link');
+			  link.rel = 'preload';
+			  link.as = 'image';
+			  link.href = images[i];
+			  document.head.appendChild(link);
+		  }
+	  }
+  
+	  const calcIndex = (length) => {
+		  settings.count++;
+  
+		  if (settings.count == length) settings.count = 0;
+  
+		  return settings.count;
+	  }
+  
+	  const animateImages = (event) => {
+		  const image = document.createElement('img');
+		  const imageSize = 200;
+  
+		  const countIndex = calcIndex(images.length);
+  
+		  image.classList.add('hero_media');
+		  image.setAttribute('src', images[countIndex]);
+  
+		  image.style.width = `${imageSize}px`;
+		  image.style.height = `${imageSize}px`;
+		  image.style.top = event.pageY - imageSize / 2 + 'px';
+image.style.left = event.pageX - imageSize / 2 + 'px';
+
+  
+		  hero.appendChild(image);
+  
+		  const randomDeg = Math.floor(Math.random() * 15);
+  
+		  window.setTimeout(() => {
+			  image.style.transform = 'scale(1)';
+			  image.style.transform = `rotate(${randomDeg}deg)`;
+		  }, 50)
+		  
+		//   window.setTimeout(() => {
+		// 	  image.style.opacity = 0;
+		// 	  image.style.filter = 'blur(10px)';
+		// 	  image.style.transform = 'scale(0.25)'
+		//   }, 1500)
+  
+		//   window.setTimeout(() => {
+		// 	  hero.removeChild(image);
+		//   }, 2500)
+	  }
+	  
+	  window.addEventListener('mousemove', (event) => {
+		  if (!settings.isEnabled) {
+			  settings.isEnabled = true;
+  
+			  setTimeout(() => {
+				  settings.isEnabled = false;
+  
+			  }, settings.time)
+  
+			  animateImages(event);
+		  }
+	  })
+	  
+	  window.onload = () => {
+		  preloadImages();
+		  initHero();
+	  }
+	  
+  </script>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: inherit;
+    height: inherit;
+  }
+
+  .hero_media {
+    position: fixed;
+    object-fit: contain;
+    z-index: 999;
+
+    pointer-events: none;
+    transition: all 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: scale(0.5);
+  }
+
+  .hero_title {
+	position: fixed;
+	top: 50%
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+
+	z-index: 10;
+
+	overflow:hidden;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+  }
+
+  .hero_title h1{
+	font-size: 40px;
+	text-align: center;
+  }
+
+  .ofh {
+	overflow: hidden;
+  }
+</style>
+
+

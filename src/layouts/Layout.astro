@@ -1,6 +1,6 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -8,44 +8,453 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body data-barba="wrapper">
+    <nav>
+      <div class="logo">Impulse</div>
+      <div class="menu-open-btn">Menu</div>
+    </nav>
+
+    <div class="menu-overlay">
+      <div class="menu-nav">
+        <div class="menu-logo">Impulse</div>
+        <div class="menu-close-btn">Close</div>
+      </div>
+      <div class="menu-cols">
+        <div class="col">
+          <div class="video">
+            <div class="video-preview"></div>
+            <div class="video-details">
+              <p><i class="ph-fill ph-play-circle"></i>Play Reel</p>
+              <p>-01:18</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="menu-link"><a href="/">Home</a></div>
+          <div class="menu-link"><a href="/experiments">Workplace</a></div>
+          <div class="menu-link">
+            <a href="/transition">Services & models</a>
+          </div>
+          <div class="menu-link"><a href="#">Our story</a></div>
+          <div class="menu-link"><a href="#">Contact</a></div>
+          <div class="btn"><a href="#">Take a seat</a></div>
+        </div>
+      </div>
+      <div class="menu-footer">
+        <div class="menu-divider"></div>
+        <div class="menu-footer-copy">
+          <div class="slogan"><p>Tomorrow's Brands, Today.</p></div>
+          <div class="socials">
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSITION WRAPPER -->
+    <div class="transition">
+      <div class="transition_wrapper">
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+        <div class="transition_column"></div>
+      </div>
+    </div>
+
+    <slot />
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --background: #050505;
+    --text: #e3e3e3;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: var(--background);
+    color: var(--text);
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+  :root {
+    --menu-overlay: #ff5f29;
+    --menu-text: #000;
+    --menu-divider: #000;
+  }
+
+  html,
+  body,
+  :root {
+    width: 100%;
+    height: 100vh;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: #000;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--menu-text);
+  }
+
+  i {
+    position: relative;
+    top: 1px;
+  }
+
+  nav {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    filter: invert(1);
+    font-weight: bold;
+    z-index: 99;
+  }
+
+  .menu-open-btn {
+    cursor: pointer;
+  }
+  .menu-overlay {
+    position: fixed;
+    width: 100%;
+    padding: 2em;
+    background: var(--menu-overlay);
+    pointer-events: none;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    z-index: 99;
+  }
+  .menu-close-btn {
+    cursor: pointer;
+  }
+  .menu-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    color: var(--menu-text);
+  }
+  .menu-cols {
+    display: flex;
+  }
+  .menu-cols > div {
+    flex: 1;
+    padding: 1em 0;
+  }
+  .video {
+    width: 50%;
+  }
+  .video-preview {
+    width: 100%;
+    height: 0;
+    background: url("https://images.unsplash.com/photo-1706211306828-3315e9eae057?q=80&w=1909&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+      no-repeat 50% 50%;
+    background-size: cover;
+    border-radius: 4px;
+  }
+  .video-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 0;
+    color: var(--menu-text);
+  }
+  .menu-link {
+    position: relative;
+    width: max-content;
+  }
+  .menu-link a {
+    font-size: 40px;
+  }
+  .menu-link:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--menu-text);
+    transition: 300ms all;
+  }
+  .menu-link:hover:after {
+    width: 100%;
+  }
+  .btn {
+    position: relative;
+    margin: 2em 0;
+    border: 1px solid var(--menu-text);
+    width: max-content;
+    padding: 1.25em 2.5em;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--menu-text);
+    transition: 0.3s all;
+    z-index: -1;
+  }
+  .btn:hover a {
+    color: var(--menu-overlay);
+  }
+  .btn:hover.btn:before {
+    width: 100%;
+  }
+  .menu-footer {
+    display: flex;
+    flex-direction: column;
+    color: var(--menu-text);
+  }
+  .menu-divider {
+    width: 0%;
+    height: 1px;
+    background: var(--menu-divider);
+    margin: 1em 0;
+  }
+  .menu-footer-copy {
+    display: flex;
+    justify-content: space-between;
+  }
+  .socials {
+    display: flex;
+    gap: 1em;
+  }
+
+  @media (max-width: 900px) {
+    .menu-overlay {
+      height: 100vh;
+    }
+    .menu-cols {
+      display: block;
+    }
+    .video-preview {
+      height: 125px;
+    }
+    .menu-link a {
+      font-size: 30px;
+    }
+  }
+
+  /* CONTENT */
+  .hero_media {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    overflow: hidden;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .hero_media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* TRANSITION-BARBA */
+  .transition {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .transition_wrapper {
+    display: flex;
+    width: inherit;
+    height: inherit;
+    align-items: end;
+  }
+  .transition_column {
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    /* transform: scaleY(0); */
+    background-color: #fff;
+  }
 </style>
+
+<!-- <script is:inline src="https://unpkg.com/@barba/core"></script> -->
+
+<script
+  is:inline
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"
+  integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"></script>
+
+<script
+  is:inline
+  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<!-- 
+<script is:inline>
+  const timelineBarba = gsap.timeline({
+    paused: true,
+    defaults: { ease: "power4.inOut" },
+  });
+
+  timelineBarba.to(".transition_column", {
+    duration: 0.7,
+    scaleY: 1,
+    scaleX: 1.1,
+    height: "100%",
+    stagger: 0.04,
+  });
+
+  const show = () => {
+    return new Promise((resolve) => timelineBarba.play().then(resolve));
+  };
+
+  const hide = () => {
+    return new Promise((resolve) => timelineBarba.reverse().then(resolve));
+  };
+
+  const animationEnter = (container) => {
+    gsap.from(container, {
+      duration: 1,
+      autoAlpha: 0,
+      scale: 0,
+      ease: "power4.out",
+    });
+  };
+
+  const animationLeave = (container) => {
+    gsap.to(container, {
+      duration: 1,
+      autoAlpha: 0,
+      scale: 0,
+      ease: "power4.out",
+    });
+  };
+
+  barba.init({
+    transitions: [
+      {
+        name: "page-transition",
+        async leave(data) {
+          await show();
+        },
+        async enter(data) {
+          await hide();
+        },
+      },
+    ],
+  });
+</script> -->
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    let timeline = gsap.timeline({ paused: true });
+
+    timeline.to(".menu-overlay", {
+      duration: 1,
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      ease: "power2.out",
+    });
+
+    timeline.from(
+      ".menu-link, .btn",
+      {
+        opacity: 0,
+        y: 60,
+        stagger: 0.05, // Esto es para que los elementos se animen uno por uno
+        duration: 0.75,
+        ease: "power1.inOut",
+      },
+      "<"
+    );
+
+    timeline.to(
+      ".video-preview",
+      {
+        duration: 1,
+        height: "200px",
+        ease: "power2.out",
+      },
+      "<"
+    );
+
+    timeline.to(
+      ".menu-divider",
+      {
+        duration: 1,
+        width: "100%",
+        ease: "power4.out",
+      },
+      "<"
+    );
+
+    function openMenu() {
+      document.querySelector(".menu-overlay").style.pointerEvents = "all";
+      timeline.play();
+    }
+
+    function closeMenu() {
+      document.querySelector(".menu-overlay").style.pointerEvents = "none";
+      timeline.reverse(); // Esto es para que la animación se reproduzca al revés
+    }
+
+    document
+      .querySelector(".menu-open-btn")
+      .addEventListener("click", openMenu);
+    document
+      .querySelector(".menu-close-btn")
+      .addEventListener("click", closeMenu);
+    timeline.reverse();
+
+    document.querySelectorAll(".menu-link").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  });
+</script>
+
+
