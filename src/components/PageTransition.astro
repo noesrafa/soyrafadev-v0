@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="loader">
+    <div class="loader-imgs">
+      <div class="img">
+        <img src="/page_reveal/img1.jpg" alt="" />
+      </div>
+      <div class="img">
+        <img src="/page_reveal/img2.jpg" alt="" />
+      </div>
+      <div class="img">
+        <img src="/page_reveal/img3.jpg" alt="" />
+      </div>
+      <div class="img" id="loader-logo">
+        <img src="/page_reveal/logo.png" alt="" />
+      </div>
+      <div class="img">
+        <img src="/page_reveal/img4.jpg" alt="" />
+      </div>
+      <div class="img">
+        <img src="/page_reveal/img5.jpg" alt="" />
+      </div>
+      <div class="img">
+        <img src="/page_reveal/img6.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .loader {
+    z-index: 999;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: red;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    pointer-events: none;
+  }
+
+  .loader-imgs {
+    width: 150%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 50px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .img {
+    opacity: 0;
+    position: relative;
+    flex: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

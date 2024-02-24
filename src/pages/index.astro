@@ -1,19 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from './home/Hero.astro'
-import Projects from './home/Projects.astro'
+import Hero from "./home/Hero.astro";
+import Projects from "./home/Projects.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="app" data-barba="container" data-barba-namespace="home">
-    <a href="/experiments">experiments</a>
+  <main>
     <Hero />
     <Projects />
   </main>
 </Layout>
 
 <script is:inline>
-  {
+  document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
 
     // helper functions
@@ -159,9 +158,11 @@ import Projects from './home/Projects.astro'
             img.DOM.el,
             1.5,
             {
-              ease: "quint.out",
-              y: "100vh",
-              opacity: 0,
+              ease: "expo.inOut",
+              stagger: 2,
+              // y: "100vh",
+              // opacity: 0,
+              scale: 0,
             },
             0.75
           );
@@ -178,5 +179,5 @@ import Projects from './home/Projects.astro'
     preloadImages().then(() => {
       new ImageTrail();
     });
-  }
+  });
 </script>
