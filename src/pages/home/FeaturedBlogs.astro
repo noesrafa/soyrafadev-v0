@@ -1,0 +1,149 @@
+<div class="preview-feat mt-10">
+  <div class="preview-feat-img"></div>
+</div>
+<div class="container-feat mt-32">
+  <div class="projects">
+    <div class="project" id="header">
+      <div class="client">
+        <p>Project</p>
+      </div>
+      <div class="location">
+        <p>Location</p>
+      </div>
+      <div class="service">
+        <p>Category</p>
+      </div>
+      <div class="year"><p>Year</p></div>
+    </div>
+    <div class="project" id="p1">
+      <div class="client">
+        <p>Fabric</p>
+      </div>
+      <div class="location">
+        <p>United Kingdom</p>
+      </div>
+      <div class="service">
+        <p>Design</p>
+      </div>
+      <div class="year"><p>2023</p></div>
+    </div>
+    <div class="project" id="p2">
+      <div class="client">
+        <p>XVVR</p>
+      </div>
+      <div class="location">
+        <p>Hongkong</p>
+      </div>
+      <div class="service">
+        <p>Branding</p>
+      </div>
+      <div class="year"><p>2021</p></div>
+    </div>
+    <div class="project" id="p3">
+      <div class="client">
+        <p>Hunters</p>
+      </div>
+      <div class="location">
+        <p>Amsterdam</p>
+      </div>
+      <div class="service">
+        <p>Creative Dev</p>
+      </div>
+      <div class="year"><p>2018</p></div>
+    </div>
+    <div class="project" id="p4">
+      <div class="client">
+        <p>Create Base</p>
+      </div>
+      <div class="location">
+        <p>New Zealand</p>
+      </div>
+      <div class="service">
+        <p>Marketing</p>
+      </div>
+      <div class="year"><p>2022</p></div>
+    </div>
+    <div class="project" id="p5">
+      <div class="client">
+        <p>Reyknotes</p>
+      </div>
+      <div class="location">
+        <p>Iceland</p>
+      </div>
+      <div class="service">
+        <p>UIUX</p>
+      </div>
+      <div class="year"><p>2019</p></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .preview-feat {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    pointer-events: none;
+    transform-origin: center;
+    transform: scale(0);
+    z-index: 2;
+  }
+
+  .preview-feat-img {
+    width: 100%;
+    height: 100%;
+    background: url(/sprite.png) no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    pointer-events: none;
+  }
+
+  p {
+    font-size: 14px !important;
+    text-transform: uppercase;
+    line-height: 100%;
+  }
+
+  #header p {
+    opacity: 0.5;
+  }
+
+  .container-feat {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .projects {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project {
+    width: 100%;
+    padding: 2.5em 1em;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    cursor: pointer;
+  }
+
+  .project > div {
+    flex: 3;
+  }
+
+  .project div:last-child {
+    flex: 1;
+  }
+
+  @media (max-width: 900px) {
+    .location,
+    .service {
+      display: none;
+    }
+  }
+</style>
