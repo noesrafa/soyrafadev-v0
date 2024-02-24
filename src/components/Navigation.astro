@@ -2,12 +2,22 @@
 
 ---
 
-<nav>
-  <div class="logo">Impulse</div>
-  <div class="menu-open-btn">Menu</div>
+<nav class="fixed w-full p-3 z-50">
+  <div
+    class="bg-white/5 backdrop-blur-xl w-full flex justify-between items-center p-2 rounded-lg border border-white/[6%]"
+  >
+    <div class="logo ml-3 flex flex-col">
+      <span> Rafael Alexander</span>
+      <span class="-mt-2 opacity-60 font-light">UX/UI & Develop</span>
+    </div>
+    <button
+      class="menu-open-btn bg-white/10 rounded-md px-3 py-1 text-xl font-light"
+      >Menu</button
+    >
+  </div>
 </nav>
 
-<div class="menu-overlay">
+<div class="menu-overlay bg-neutral-900/90 backdrop-blur-xl">
   <div class="menu-nav">
     <div class="menu-logo">Impulse</div>
     <div class="menu-close-btn">Close</div>
@@ -57,18 +67,6 @@
     top: 1px;
   }
 
-  nav {
-    position: fixed;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 2em;
-    filter: invert(1);
-    font-weight: bold;
-    z-index: 999;
-    color: #fff !important;
-  }
-
   .menu-open-btn {
     cursor: pointer;
   }
@@ -76,7 +74,6 @@
     position: fixed;
     width: 100%;
     padding: 2em;
-    background: #b57de3;
     pointer-events: none;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     z-index: 999;
