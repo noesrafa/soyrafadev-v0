@@ -102,7 +102,11 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
         if (distance > this.threshold) {
           this.showNextImage();
 
-          ++this.zIndexVal;
+          if (this.zIndexVal < 90) {
+            ++this.zIndexVal;
+          } else {
+            this.zIndexVal = 1;
+          }
           this.imgPosition =
             this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
 
@@ -193,7 +197,7 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
   gsap.registerPlugin(ScrollTrigger);
 
   function changeBackgroundColor(bgColor) {
-    gsap.to("body", { backgroundColor: bgColor });
+    gsap.to("#project-cta", { backgroundColor: bgColor });
   }
 
   // Configuración de ScrollTrigger
@@ -201,8 +205,42 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
     trigger: ".trigger-element",
     start: "+=100 bottom", // Cuando el inicio de la ventana de visualización alcanza la parte superior del elemento
     end: "bottom", // Cuando la parte superior de la ventana de visualización alcanza la parte inferior del elemento
-    onEnter: () => changeBackgroundColor("var(--text)"),
-    onLeaveBack: () => changeBackgroundColor("var(--background)"), // Cambia al color original cuando desplazas hacia arriba
-    // markers: true,
+    onEnter: () => changeBackgroundColor("var(--primary)"),
+    onLeaveBack: () => changeBackgroundColor("var(--secondary)"), // Cambia al color original cuando desplazas hacia arriba
+    markers: true,
   });
 </script> -->
+
+<script is:inline>
+  gsap.registerPlugin(ScrollTrigger);
+
+  function playTimeline() {
+    // Crea tu línea de tiempo de GSAP aquí
+    const myTimeline = gsap
+      .timeline()
+      .to("#project-cta", { scale: 1, opacity: 1 })
+      .to("#project-cta", { y: -50, ease: "back.out(2)", duration: 0.5 });
+
+    return myTimeline;
+  }
+
+  function playTimelineBack() {
+    // Crea tu línea de tiempo de GSAP aquí
+    const myTimeline = gsap
+      .timeline()
+      .to("#project-cta", { y: 0 })
+      .to("#project-cta", { scale: 0, opacity: 0 });
+
+    return myTimeline;
+  }
+
+  // Configuración de ScrollTrigger
+  ScrollTrigger.create({
+    trigger: ".trigger-element",
+    start: "+=400 bottom", // Cuando el inicio de la ventana de visualización alcanza la parte superior del elemento
+    end: "bottom", // Cuando la parte superior de la ventana de visualización alcanza la parte inferior del elemento
+    onEnter: () => playTimeline().play(), // Inicia la línea de tiempo cuando se activa ScrollTrigger
+    onLeaveBack: () => playTimelineBack().play(), // Revierte la línea de tiempo cuando desplazas hacia arriba
+    markers: true,
+  });
+</script>
