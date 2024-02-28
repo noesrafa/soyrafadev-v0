@@ -50,10 +50,7 @@
         </div><div class="w-8 h-8 rounded-full bg-slate-700"></div>
       </div>
     </div>
-    <button
-      class="px-5 py-4 bg-[var(--color-tertiary)] hover:bg-white/[5%] transition rounded-full text-lg h-fit mt-8 lg:mt-0"
-      >Visit website</button
-    >
+    <div class="h-40"></div>
   </div>
 
   <div
@@ -63,14 +60,22 @@
     <div
       class="min-w-14 min-h-14 bg-neutral-700/70 backdrop-blur-xl rounded-full flex items-center gap-2 px-6 font-semibold"
     >
-      <p>Fintech App <span class="ml-2 opacity-60 font-light">2023</span></p>
+      <p class="cta-item">Fintech App</p>
+      <span class="cta-item ml-2 opacity-60 font-light">2023</span>
     </div>
     <div
       class="min-w-14 min-h-14 bg-neutral-700/70 backdrop-blur-xl rounded-full flex items-center gap-2 px-2 pl-6 font-semibold"
     >
-      ver caso <i
-        class="ph-bold ph-arrow-right h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center"
+      <span class="cta-item">ver caso</span>
+      <i
+        class="cta-item ph-bold ph-arrow-right h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center"
       ></i>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-item {
+    scale: 0;
+  }
+</style>
