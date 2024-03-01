@@ -223,8 +223,8 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
       .to(".cta-item", {
         scale: 1,
         stagger: 0.15,
-        duration: 0.2,
-        ease: "back.inOut",
+        duration: 0.5,
+        ease: "back.out",
       });
 
     return myTimeline;
@@ -242,7 +242,7 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
 
   ScrollTrigger.create({
     trigger: ".trigger-element",
-    start: "+=400 bottom", 
+    start: "+=500 bottom", 
     end: "bottom",
     onEnter: () => playTimeline().play(), 
     onLeaveBack: () => playTimelineBack().play(),

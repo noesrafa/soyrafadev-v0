@@ -53,14 +53,14 @@ const { title } = Astro.props;
     --primary: #ffffff;
     --secondary: #000000;
     --tertiary: #f5f5f5;
-    --blur: rgb(0 0 0 / 0.05);
+    --blur: rgba(235, 235, 235, 0.4);
   }
 
   [data-theme="dark"] {
     --primary: #000000;
     --secondary: #ffffff;
     --tertiary: #1a1a1a;
-    --blur: rgba(255, 255, 255, 0.05);
+    --blur: rgba(34, 34, 34, 0.703);
   }
 
   body {
@@ -116,11 +116,8 @@ const { title } = Astro.props;
    * Utility function to update the button text and aria-label.
    */
   function updateButton({ buttonEl, isDark }) {
-    const newCta = isDark ? "Light Theme" : "Dark theme";
-    // use an aria-label if you are omitting text on the button
-    // and using a sun/moon icon, for example
-    buttonEl.setAttribute("aria-label", newCta);
-    buttonEl.innerText = newCta;
+   // Change props 
+
   }
 
   /**
