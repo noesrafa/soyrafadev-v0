@@ -13,8 +13,7 @@
 </nav>
 
 <style>
-  #navbar,
-  #navbar_content {
+  #navbar, #navbar_content {
     transition: 300ms cubic-bezier(0.245, -0.005, 0, 1.005); /* custom */
   }
 </style>
@@ -43,6 +42,7 @@
       // Restaura los estilos originales si no se ha alcanzado el umbral
       navbarContent.style.backgroundColor = "var(--primary)";
       navbar.style.padding = "0";
+      navbarContent.style.borderRadius = "0";
       navbar.style.paddingTop = "12px";
     }
   });
