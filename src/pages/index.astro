@@ -216,39 +216,35 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
   gsap.registerPlugin(ScrollTrigger);
 
   function playTimeline() {
-    // Crea tu línea de tiempo de GSAP aquí
     const myTimeline = gsap
       .timeline()
-      .to("#project-cta", { scale: 1, opacity: 1, ease: "expo.inOut" })
+      .to("#project-cta", { scale: 1, opacity: 1, ease: "expo.out", duration: .1 })
+      .to("#project-cta", { y: -50, ease: "back.out(2)", duration: 0.3 })
       .to(".cta-item", {
         scale: 1,
         stagger: 0.15,
-        duration: 0.5,
-        ease: "expo.out",
-      })
-      .to("#project-cta", { y: -50, ease: "back.out(2)", duration: 0.5 }, -1);
+        duration: 0.2,
+        ease: "back.inOut",
+      });
 
     return myTimeline;
   }
 
   function playTimelineBack() {
-    // Crea tu línea de tiempo de GSAP aquí
     const myTimeline = gsap
       .timeline()
-      .to("#project-cta", { scale: 0, opacity: 0 })
-      .to(".cta-item", { scale: 0, stagger: 0.1 })
-      .to("#project-cta", { y: 0 }, -1);
+      .to("#project-cta", { y: 0, duration: 0.25 })
+      .to("#project-cta", { scale: 0, opacity: 0, duration: 0.1 })
+      .to(".cta-item", { scale: 0, stagger: 0.1, duration: 0.1 });
 
     return myTimeline;
   }
 
-  // Configuración de ScrollTrigger
   ScrollTrigger.create({
     trigger: ".trigger-element",
-    start: "+=400 bottom", // Cuando el inicio de la ventana de visualización alcanza la parte superior del elemento
-    end: "bottom", // Cuando la parte superior de la ventana de visualización alcanza la parte inferior del elemento
-    onEnter: () => playTimeline().play(), // Inicia la línea de tiempo cuando se activa ScrollTrigger
-    onLeaveBack: () => playTimelineBack().play(), // Revierte la línea de tiempo cuando desplazas hacia arriba
-    // markers: true,
+    start: "+=400 bottom", 
+    end: "bottom",
+    onEnter: () => playTimeline().play(), 
+    onLeaveBack: () => playTimelineBack().play(),
   });
 </script>
