@@ -1,20 +1,23 @@
 <nav class="fixed w-full p-0 pt-3 z-[100]" id="navbar">
   <div
-    class="backdrop-blur-2xl w-full flex justify-between items-center p-1 lg:p-2"
+    class="backdrop-blur-2xl mx-auto w-full flex justify-between items-center p-1 lg:p-2"
     id="navbar_content"
   >
     <div class="logo ml-3 flex flex-col">
       <span> <b>Rafael Alexander</b></span>
       <span class="-mt-2 opacity-60 font-light">UX/UI & Develop</span>
     </div>
-    <button class="invert w-5 h-5 bg-primary rounded-md mr-3" type="button" data-theme-toggle
-    ></button>
+    <button
+      class="invert w-5 h-5 bg-primary rounded-md mr-3"
+      type="button"
+      data-theme-toggle></button>
   </div>
 </nav>
 
 <style>
-  #navbar, #navbar_content {
-    transition: 300ms cubic-bezier(0.245, -0.005, 0, 1.005); /* custom */
+  #navbar,
+  #navbar_content {
+    transition: 400ms cubic-bezier(0,1.22,.46,1); /* custom */
   }
 </style>
 
@@ -35,11 +38,13 @@
     if (scrollPixels > scrollThreshold) {
       // Cambia los estilos de la barra de navegación
       navbar.style.padding = "16px";
-      navbarContent.style.borderRadius = "32px";
+      navbarContent.style.width = "360px";
+      navbarContent.style.borderRadius = "20px";
       navbarContent.style.backgroundColor = "var(--blur)";
       // Puedes agregar más estilos según tus necesidades
     } else {
       // Restaura los estilos originales si no se ha alcanzado el umbral
+      navbarContent.style.width = "100%";
       navbarContent.style.backgroundColor = "var(--primary)";
       navbar.style.padding = "0";
       navbarContent.style.borderRadius = "0";
