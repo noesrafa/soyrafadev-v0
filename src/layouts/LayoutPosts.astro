@@ -15,7 +15,7 @@ export interface Props {
 const { currentPage, totalPages, paginatedPosts } = Astro.props;
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<Layout page="Blog" title={`Posts | ${SITE.title}`}>
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
     <ul>
       {
