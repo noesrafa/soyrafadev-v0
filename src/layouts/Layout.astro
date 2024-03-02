@@ -1,6 +1,5 @@
 ---
 import Navigation from "../components/Navigation.astro";
-import PageTransition from "../trash/PageTransition.astro";
 import "@fontsource-variable/dm-sans";
 interface Props {
   title: string;
@@ -21,7 +20,6 @@ const { title } = Astro.props;
   </head>
   <body>
     <Navigation />
-    <!-- <PageTransition /> -->
 
     <slot />
   </body>
@@ -76,12 +74,6 @@ const { title } = Astro.props;
 </style>
 
 <script is:inline>
-  /**
-   * Utility function to calculate the current theme setting.
-   * Look for a local storage value.
-   * Fall back to system setting.
-   * Fall back to light mode.
-   */
   function calculateSettingAsThemeString({
     localStorageTheme,
     systemSettingDark,
@@ -97,49 +89,27 @@ const { title } = Astro.props;
     return "light";
   }
 
-  /**
-   * Utility function to update the button text and aria-label.
-   */
   function updateButton({ buttonEl, isDark }) {
     // Change props
   }
 
-  /**
-   * Utility function to update the theme setting on the html tag
-   */
   function updateThemeOnHtmlEl({ theme }) {
     document.querySelector("html").setAttribute("data-theme", theme);
   }
 
-  /**
-   * On page load:
-   */
-
-  /**
-   * 1. Grab what we need from the DOM and system settings on page load
-   */
   const button = document.querySelector("[data-theme-toggle]");
   const localStorageTheme = localStorage.getItem("theme");
   const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-  /**
-   * 2. Work out the current site settings
-   */
   let currentThemeSetting = calculateSettingAsThemeString({
     localStorageTheme,
     systemSettingDark,
   });
 
-  /**
-   * 3. Update the theme setting and button text accoridng to current settings
-   */
   updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
   updateThemeOnHtmlEl({ theme: currentThemeSetting });
 
-  /**
-   * 4. Add an event listener to toggle the theme
-   */
-  button.addEventListener("click", (event) => {
+  button.addEventListener("click", (_event) => {
     const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
 
     localStorage.setItem("theme", newTheme);
@@ -172,72 +142,6 @@ const { title } = Astro.props;
 ></script>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
-    let timeline = gsap.timeline({ paused: true });
-
-    timeline.to(".menu-overlay", {
-      duration: 1,
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-      ease: "power2.out",
-    });
-
-    timeline.from(
-      ".menu-link, .btn",
-      {
-        opacity: 0,
-        y: 60,
-        stagger: 0.05, // Esto es para que los elementos se animen uno por uno
-        duration: 0.75,
-        ease: "power1.inOut",
-      },
-      "<"
-    );
-
-    timeline.to(
-      ".video-preview",
-      {
-        duration: 1,
-        height: "200px",
-        ease: "power2.out",
-      },
-      "<"
-    );
-
-    timeline.to(
-      ".menu-divider",
-      {
-        duration: 1,
-        width: "100%",
-        ease: "power4.out",
-      },
-      "<"
-    );
-
-    function openMenu() {
-      document.querySelector(".menu-overlay").style.pointerEvents = "all";
-      timeline.play();
-    }
-
-    function closeMenu() {
-      document.querySelector(".menu-overlay").style.pointerEvents = "none";
-      timeline.reverse(); // Esto es para que la animación se reproduzca al revés
-    }
-
-    document
-      .querySelector(".menu-open-btn")
-      .addEventListener("click", openMenu);
-    document
-      .querySelector(".menu-close-btn")
-      .addEventListener("click", closeMenu);
-    timeline.reverse();
-
-    document.querySelectorAll(".menu-link").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-  });
-</script>
-
-<script is:inline>
   const lenis = new Lenis();
 
   lenis.on("scroll", (e) => {});
@@ -248,59 +152,4 @@ const { title } = Astro.props;
   }
 
   requestAnimationFrame(raf);
-</script>
-
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
-    // gsap.set(".img", { y: 500 });
-    // gsap.set(".loader-imgs", { x: 500 });
-    // gsap.set(".nav-item", { y: 25, opacity: 0 });
-    // gsap.set("h1, .item, footer", { y: 200 });
-    gsap.set("h1", { y: 200 });
-
-    const tl = gsap.timeline({});
-
-    // tl.to(".img", {
-    //   y: 0,
-    //   opacity: 1,
-    //   duration: 1,
-    //   stagger: 0.05,
-    //   ease: "power3.inOut",
-    // })
-    // .to(
-    //   ".loader-imgs",
-    //   {
-    //     x: 0,
-    //     duration: 2,
-    //     ease: "power3.inOut",
-    //   },
-    //   "-=1.5"
-    // )
-    // .to(
-    //   ".img:not(#loader-logo)",
-    //   {
-    //     clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-    //     duration: 1,
-    //     stagger: 0.1,
-    //     ease: "power3.inOut",
-    //   },
-    //   "-=1"
-    // )
-    // .to(
-    //   ".loader",
-    //   {
-    //     clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-    //     duration: 1,
-    //     ease: "power3.inOut",
-    //   },
-    //   "-=1"
-    // )
-    tl.to(" h1", {
-      y: 0,
-      opacity: 1,
-      stagger: 0.1,
-      duration: 1,
-      ease: "power3.inOut",
-    });
-  });
 </script>

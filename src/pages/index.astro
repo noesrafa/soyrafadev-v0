@@ -20,13 +20,11 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
   document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
 
-    // helper functions
     const MathUtils = {
       lerp: (a, b, n) => (1 - n) * a + n * b,
       distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
     };
 
-    // get the mouse position
     const getMousePos = (ev) => {
       let posx = 0;
       let posy = 0;
@@ -43,7 +41,6 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
 
     let mousePos = (lastMousePos = cacheMousePos = { x: 0, y: 0 });
 
-    // update the mouse position
     window.addEventListener("mousemove", (ev) => (mousePos = getMousePos(ev)));
 
     const getMouseDistance = () =>
@@ -102,12 +99,6 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
 
         if (distance > this.threshold) {
           this.showNextImage();
-
-          // if (this.zIndexVal < 90) {
-          //   ++this.zIndexVal;
-          // } else {
-          //   this.zIndexVal = 1;
-          // }
           ++this.zIndexVal;
           this.imgPosition =
             this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
@@ -132,7 +123,7 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
         const img = this.images[this.imgPosition];
         gsap.killTweensOf(img.DOM.el);
 
-        const randomDeg = 0; // Rango de -15 a 15
+        const randomDeg = 0;
 
         new gsap.timeline()
           .set(
@@ -175,7 +166,6 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
               stagger: 2,
               y: "100vh",
               opacity: 0,
-              // scale: 1,
             },
             0.75
           );
@@ -194,24 +184,6 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
     });
   });
 </script>
-
-<!-- <script is:inline>
-  gsap.registerPlugin(ScrollTrigger);
-
-  function changeBackgroundColor(bgColor) {
-    gsap.to("#project-cta", { backgroundColor: bgColor });
-  }
-
-  // Configuración de ScrollTrigger
-  ScrollTrigger.create({
-    trigger: ".trigger-element",
-    start: "+=100 bottom", // Cuando el inicio de la ventana de visualización alcanza la parte superior del elemento
-    end: "bottom", // Cuando la parte superior de la ventana de visualización alcanza la parte inferior del elemento
-    onEnter: () => changeBackgroundColor("var(--primary)"),
-    onLeaveBack: () => changeBackgroundColor("var(--secondary)"), // Cambia al color original cuando desplazas hacia arriba
-    markers: true,
-  });
-</script> -->
 
 <script is:inline>
   gsap.registerPlugin(ScrollTrigger);
@@ -266,7 +238,7 @@ import FeaturedBlogs from "./home/FeaturedBlogs.astro";
         stagger: 0.2,
         ease: "circ.inOut",
       },
-      .5
+      0.5
     );
   });
 </script>
