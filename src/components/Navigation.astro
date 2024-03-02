@@ -4,7 +4,7 @@
     id="navbar_content"
   >
     <div class="flex justify-between">
-      <div class="logo ml-3 flex flex-col">
+      <div class="logo ml-3 flex flex-col mt-1 lg:mt-0">
         <span> <b>Rafael Alexander</b></span>
         <span class="-mt-2 opacity-60 font-light">UX/UI & Develop</span>
       </div>
@@ -36,6 +36,7 @@
     // Obtén la referencia a tu barra de navegación
     const navbar = document.getElementById("navbar");
     const navbarContent = document.getElementById("navbar_content");
+    let isMenuVisible;
 
     // Agrega un evento de scroll al documento
     document.addEventListener("scroll", function () {
@@ -49,7 +50,7 @@
       if (scrollPixels > scrollThreshold) {
         // Cambia los estilos de la barra de navegación
         navbar.style.padding = "16px";
-        navbarContent.style.width = "340px";
+        navbarContent.style.width = "280px";
         navbarContent.style.borderRadius = "20px";
         navbarContent.style.backgroundColor = "var(--blur)";
         // Puedes agregar más estilos según tus necesidades
@@ -64,11 +65,12 @@
     });
 
     const showMenu = () => {
-      const isMenuVisible = navbarContent.classList.contains("!h-44");
+      isMenuVisible = navbarContent.classList.contains("!h-44");
       if (isMenuVisible) {
         navbarContent.classList.remove("!h-44");
       } else {
         navbarContent.classList.add("!h-44");
+        navbarContent.style.backgroundColor = "var(--blur)";
       }
     };
   </script>
