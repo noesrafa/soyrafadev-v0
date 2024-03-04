@@ -1,7 +1,81 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import Project from "./home/project.astro";
+import { getCollection } from "astro:content";
+import { getSortedPosts } from "../utils/blog.util";
+import Card from "../components/blog/Card";
+import Datetime from "../components/blog/Datetime";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts?.filter(({ data }) => data.featured);
 ---
 
-<Layout page="Inicio" title="Rafael Alexander — UX/UI Designer & Developer">
-  hola
+<Layout page="Inicio" title="Rafael Alexander">
+  <section class="pt-20">
+    <div class="flex gap-5 items-center">
+      <Image
+        src="/favicon.png"
+        alt="handsome developer"
+        width={64}
+        height={64}
+        class:list={"rounded"}
+        loading="eager"
+      />
+      <div>
+        <h2 class="text-lg">Rafael Alexander</h2>
+        <p class="opacity-60">Senior Front-End Developer</p>
+      </div>
+    </div>
+    <h2 class="text-lg mt-14">About me</h2>
+    <p class="opacity-60 mt-3">
+      Crafting UIs with React since 2016. Passionate about interface design and
+      attention to detail, striving to create great experiences.
+    </p>
+    <h2 class="text-lg mt-14">Now</h2>
+    <p class="opacity-60 mt-3">
+      I'm fine-tuning my freelancing business, sharing more online, leveling up
+      my design skill. I also experiment more with side projects, try to ship
+      more.
+    </p>
+    <h2 class="text-lg mt-14 mb-3">Selected projects</h2>
+    <div class="flex flex-col gap-6">
+      <Project name="Heru" imageUrl="/projects/heru_prev.svg" year={2024} />
+      <Project name="Pefai" imageUrl="/projects/pefai_prev.svg" year={2023} />
+      <Project
+        name="Driftlead"
+        imageUrl="/projects/driftlead_prev.svg"
+        year={2023}
+      />
+      <Project name="Fiscal" imageUrl="/projects/fiscal_prev.svg" year={2023} />
+    </div>
+  </section>
+  <section class="pb-32 mt-10">
+    <h2 class="text-lg mt-14 mb-3">Featured posts</h2>
+    {
+      featuredPosts?.length > 0 && (
+        <ul class="flex flex-col">
+          {featuredPosts?.map(({ data, slug }) => (
+            // <Card
+            //   href={`/posts/${slug}/`}
+            //   frontmatter={data}
+            //   secHeading={false}
+            // />
+            <a
+              href={`/blog/${slug}/`}
+              class="flex justify-between gap-3 leading-4 opacity-70 hover:opacity-100 transition font-light border-b border-tertiary py-2.5"
+            >
+              <span>{data.title}</span>
+              <Datetime
+                pubDatetime={data.pubDatetime}
+                modDatetime={data.modDatetime}
+              />
+            </a>
+          ))}
+        </ul>
+      )
+    }
+  </section>
 </Layout>

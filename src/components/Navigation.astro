@@ -13,26 +13,46 @@ const categories = [
 ];
 ---
 
-<nav class="fixed bottom-10 w-full z-50">
+<nav class="fixed bottom-10 w-full z-50 px-4">
   <div
     id="navigation-container"
-    class="backdrop-blur-lg bg-blur p-1 w-fit rounded-2xl mx-auto flex gap-1 items-center transition"
+    class="backdrop-blur-lg bg-blur p-1 max-w-96 rounded-2xl mx-auto flex gap-1 items-center"
   >
     {
       categories.map((category) => (
         <a
-          class={`py-1.5 px-3 rounded-xl cursor-pointer hover:shadow-md hover:bg-primary hover:scale-[1.05] transition ${page === category.label && "bg-primary shadow-md"}`}
+          class={`py-1.5 text-center px-3 w-full rounded-xl cursor-pointer hover:shadow-md hover:bg-primary hover:scale-[1.05] transition ${page === category.label && "bg-primary shadow-md"}`}
           href={`/${category.slug}`}
         >
           {category.label}
         </a>
       ))
     }
-    <button
-      class="invert w-5 h-5 bg-primary rounded-sm ml-2 mr-3 hover:scale-[1.1] transition"
-      type="button"
-      data-theme-toggle
-    >
-    </button>
+    <div class="relative group flex items-center justify-center">
+      <button
+        class="invert min-w-5 min-h-5 bg-primary ml-2 mr-3 hover:!scale-[1.25] transition rounded-sm group-hover:rounded-none"
+        type="button"
+        data-theme-toggle
+      >
+      </button>
+      <button
+        class="invert min-w-5 min-h-5 bg-primary ml-2 mr-3 hover:!scale-[1.25] transition absolute -top-5 left-0 scale-0 group-hover:scale-100 group-hover:rounded-none"
+        type="button"
+        data-theme-toggle
+      >
+        <button
+          class="invert min-w-5 min-h-5 bg-primary ml-2 mr-3 hover:!scale-[1.25] transition absolute -top-10 left-0 scale-0 group-hover:scale-100 group-hover:rounded-none"
+          type="button"
+          data-theme-toggle
+        >
+          <button
+            class="invert min-w-5 min-h-5 bg-primary ml-2 mr-3 hover:!scale-[1.25] transition absolute -top-15 left-0 scale-0 group-hover:scale-100 group-hover:rounded-none"
+            type="button"
+            data-theme-toggle
+          >
+          </button>
+        </button>
+      </button>
+    </div>
   </div>
 </nav>
