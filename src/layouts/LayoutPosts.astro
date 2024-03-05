@@ -1,10 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import Main from "../layouts/LayoutMain.astro";
 import Pagination from "../components/blog/Pagination.astro";
-import Card from "../components/blog/Card";
 import { SITE } from "../config";
+import Datetime from "../components/blog/Datetime";
 
 export interface Props {
   currentPage: number;
@@ -15,21 +14,30 @@ export interface Props {
 const { currentPage, totalPages, paginatedPosts } = Astro.props;
 ---
 
-<Layout page="Blog" title={`Posts | ${SITE.title}`}>
-  <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
-    <ul>
+<Layout page="Blog" title={`${SITE.title} — Blog`}>
+  <section class="pt-20">
+    <ul class="flex flex-col gap-1">
       {
         paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/blog/${slug}/`} frontmatter={data} />
+          <a
+            href={`/blog/${slug}/`}
+            class="flex justify-between gap-3 leading-4 opacity-70 hover:opacity-100 transition border-b border-tertiary py-2.5 sm:text-lg"
+          >
+            <span>{data.title}</span>
+            <Datetime
+              pubDatetime={data.pubDatetime}
+              modDatetime={data.modDatetime}
+            />
+          </a>
         ))
       }
     </ul>
-  </Main>
 
-  <Pagination
-    {currentPage}
-    {totalPages}
-    prevUrl={`/blog${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
-    nextUrl={`/blog/${currentPage + 1}/`}
-  />
+    <Pagination
+      {currentPage}
+      {totalPages}
+      prevUrl={`/blog${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
+      nextUrl={`/blog/${currentPage + 1}/`}
+    />
+  </section>
 </Layout>
