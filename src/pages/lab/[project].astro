@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import { LAB_PROJECTS } from "../../consts";
+
+export function getStaticPaths() {
+  return LAB_PROJECTS.map((project) => {
+    return {
+      params: {
+        project: project.slug,
+      },
+    };
+  });
+}
+
+const { project } = Astro.params;
+const index = LAB_PROJECTS.findIndex((p) => p.slug === project);
+const info = LAB_PROJECTS[index];
+const number = `${index + 1}`.padStart(2, "0");
+---
+
+<Layout title={`Javascript - ${number}: ${info.title}`} page="lab">
+  <iframe
+    title={`${info.title}`}
+    class="w-screen h-screen"
+    src={`/lab/${project}/index.html`}></iframe>
+</Layout>

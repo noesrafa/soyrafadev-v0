@@ -9,6 +9,10 @@ export default {
         tertiary: "var(--tertiary)",
         blur: "var(--blur)",
       },
+      transitionTimingFunction: {
+        "in-expo": "cubic-bezier(0.335, 0.000, 0.040, 1.650)",
+        "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

@@ -21,9 +21,7 @@ const { title, page } = Astro.props;
   </head>
   <body>
     <Navigation page={page} />
-    <div class="pb-32">
-      <slot />
-    </div>
+    <slot />
   </body>
 </html>
 
@@ -134,7 +132,6 @@ const { title, page } = Astro.props;
   is:inline
   src="https://unpkg.com/@studio-freight/lenis@1.0.37/dist/lenis.min.js"
 ></script>
-
 
 <script is:inline>
   const lenis = new Lenis();

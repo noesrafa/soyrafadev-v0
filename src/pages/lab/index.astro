@@ -1,5 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { LAB_PROJECTS } from "../../consts";
 ---
 
-<Layout page="Lab" title="Rafael Alexander — Lab">Lab</Layout>
+<Layout page="Lab" title="Rafael Alexander — Lab">
+  {
+    LAB_PROJECTS.map((project, index) => {
+      const num = `${index + 1}`.padStart(2, "0");
+
+      return (
+        <article>
+          <a
+            href={`/lab/${project.slug}`}
+          >
+            #{num} {project.title}
+          </a>
+        </article>
+      );
+    })
+  }
+</Layout>
