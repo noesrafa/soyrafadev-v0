@@ -6,6 +6,11 @@ import { getCollection } from "astro:content";
 import { getSortedPosts } from "../utils/blog.util";
 import Datetime from "../components/blog/Datetime";
 
+import HeruCover from "../assets/images/heru_prev.webp";
+import DriftleadCover from "../assets/images/driftlead_prev.webp";
+import PefaiCover from "../assets/images/pefai_prev.webp";
+import FintechCover from "../assets/images/fiscal_prev.webp";
+
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
@@ -16,7 +21,7 @@ const featuredPosts = sortedPosts?.filter(({ data }) => data.featured);
   <section class="pt-20">
     <div class="flex gap-5 items-center">
       <Image
-        src="/favicon.png"
+        src="/favicon.webp"
         alt="handsome developer"
         width={64}
         height={64}
@@ -41,14 +46,10 @@ const featuredPosts = sortedPosts?.filter(({ data }) => data.featured);
     </p>
     <h2 class="text-lg mt-14 mb-3">Selected projects</h2>
     <div class="flex flex-col gap-6">
-      <Project name="Heru" year={2024} imageUrl="/projects/heru_prev.svg" />
-      <Project name="Pefai" year={2024} imageUrl="/projects/pefai_prev.svg" />
-      <Project
-        name="Driftlead"
-        year={2024}
-        imageUrl="/projects/driftlead_prev.svg"
-      />
-      <Project name="Fiscal" year={2024} imageUrl="/projects/fiscal_prev.svg" />
+      <Project name="Heru" year={2024} imageUrl={HeruCover.src} />
+      <Project name="Pefai" year={2024} imageUrl={PefaiCover.src} />
+      <Project name="Driftlead" year={2024} imageUrl={DriftleadCover.src} />
+      <Project name="Fiscal" year={2024} imageUrl={FintechCover.src} />
     </div>
   </section>
   <section class="pb-32 mt-10">
